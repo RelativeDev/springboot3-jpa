@@ -1,14 +1,14 @@
 package com.springboot.firstproject.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class User1 implements Serializable {
+@Table(name = "tb_user")
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,11 +16,13 @@ public class User1 implements Serializable {
     private String email;
     private String phone;
     private String password;
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
 
-    public User1() {
+    public User() {
     }
 
-    public User1(Long id, String name, String email, String phone, String password) {
+    public User(Long id, String name, String email, String phone, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -64,6 +66,10 @@ public class User1 implements Serializable {
         return password;
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }
@@ -73,7 +79,7 @@ public class User1 implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        User1 user = (User1) o;
+        User user = (User) o;
 
         return getId() != null ? getId().equals(user.getId()) : user.getId() == null;
     }

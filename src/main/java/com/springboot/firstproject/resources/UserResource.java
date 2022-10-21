@@ -1,6 +1,6 @@
 package com.springboot.firstproject.resources;
 
-import com.springboot.firstproject.entities.User1;
+import com.springboot.firstproject.entities.User;
 import com.springboot.firstproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,14 +19,14 @@ public class UserResource {
     private UserService service;
 
     @GetMapping
-    public ResponseEntity<List<User1>> findAll(){
-        List<User1> list = service.findAll();
+    public ResponseEntity<List<User>> findAll(){
+        List<User> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<User1> findById(@PathVariable Long id){
-        User1 obj = service.findById(id);
+    public ResponseEntity<User> findById(@PathVariable Long id){
+        User obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
 
