@@ -1,20 +1,26 @@
 package com.springboot.firstproject.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.io.Serializable;
-import java.util.Objects;
 
-public class User implements Serializable {
-
+@Entity
+public class User1 implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
     private String phone;
     private String password;
 
-    public User() {
+    public User1() {
     }
 
-    public User(Long id, String name, String email, String phone, String password) {
+    public User1(Long id, String name, String email, String phone, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -67,7 +73,7 @@ public class User implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        User user = (User) o;
+        User1 user = (User1) o;
 
         return getId() != null ? getId().equals(user.getId()) : user.getId() == null;
     }
